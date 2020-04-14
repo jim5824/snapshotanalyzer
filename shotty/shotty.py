@@ -23,6 +23,7 @@ def has_pending_snapshot(volume):
 
 
 @click.group()
+def cli():
     """Shotty manages snapshots"""
 
 @cli.group('snapshots')
@@ -103,7 +104,7 @@ def create_snapshots(project):
             if has_pending_snapshot(v):
                 print(" Skipping {0}, snapshot already in progress".format(v.id))
                 continue
-            
+
             print(" Creating snapshot of {0}".format(v.id))
             v.create_snapshot(Description="Created by snapshotanalyzer")
         print("Starting {0}...".format(i.id))
